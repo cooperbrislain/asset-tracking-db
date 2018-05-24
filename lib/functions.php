@@ -77,35 +77,3 @@ function complete_process($db, $ids, $process_name) {
     }
 }
 
-function process_begin($db, $ids) {
-    complete_process($db, $ids, 'begin');
-}
-
-function process_beamassembled($db, $ids) {
-    complete_process($db, $ids, 'beam_assembled');
-}
-
-function process_powerwiresrun($db, $ids) {
-    complete_process($db, $ids, 'power_wires');
-}
-
-function process_connectionssoldered($db, $ids) {
-    complete_process($db, $ids, 'connections_soldered');
-}
-
-function process_leds($db, $ids) {
-    complete_process($db, $ids, 'led_strip');
-}
-
-function process_endcaps($db, $ids) {
-    complete_process($db, $ids, 'end_caps');
-}
-
-function process_powerplugs($db, $ids) {
-    complete_process($db, $ids, 'power_plugs');
-}
-
-function process_complete($db, $ids) {
-    complete_process($db, $ids, 'complete');
-}
-
