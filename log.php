@@ -15,9 +15,7 @@
 
         } else {
             foreach($json_ob->ids as $serial) {
-                error_log('looking up ' . $serial);
                 if($id = find_or_create($mysqli, $serial)) {
-                    error_log('found ' . $id);
                     $ids[] = $id;
                 }
             }
