@@ -29,5 +29,4 @@
             }
         }
     } else {
-        error_log('not array');
     }
