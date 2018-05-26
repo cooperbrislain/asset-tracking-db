@@ -1,5 +1,20 @@
 <?php
 
+define('BROKER', 'localhost');
+define('PORT', 1883);
+define('CLIENT_ID', "pubclient_" + getmypid());
+
+function mqtt_notify($db, $asset_ids) {
+    $c = new Mosquitto\Client;
+    $c->onConnect(function() use ($c) {
+        $c->publish('assets/scanned', implode(',',asset_ids));
+        $c->disconnect();
+    });
+
+    $c->connect('mqtt.spaceboycoop.com');
+    $c->loopForever();
+}
+
 function get_test_status($db, $asset_id, $test_id) {
     $query = "SELECT result FROM test_result_link " .
         "INNER JOIN test ON fk_test_id = test.id " .

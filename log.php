@@ -1,35 +1,10 @@
 <?php
-
     require_once('mysqli.php');
-    require_once('actions.php');
+    require_once('class/class_asset.php');
+    require_once('lib/functions.php');
+    require_once('lib/actions.php');
 
     error_log($_REQUEST['json']);
-
- /*   $clientActions = array(
-        "CheckIn",
-
-        "Working",
-        "Broken",
-
-        "Status.Good",
-        "Status.Bad",
-        "Strip.Good",
-        "Strip.Bad",
-        "Input.Good",
-        "Input.Bad",
-        "Output.Good",
-        "Output.Bad",
-/*
-        "Process.Begin",
-        "Process.BeamAssembled",
-        "Process.PowerWiresRun",
-        "Process.ConnectionsSoldered",
-        "Process.LEDs",
-        "Process.EndCaps",
-        "Process.PowerPlugs",
-        "Process.Complete"
-        */
-    );*/
 
     $json_ob = json_decode($_REQUEST['json']);
 
