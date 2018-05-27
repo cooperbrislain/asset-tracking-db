@@ -64,10 +64,12 @@ function test_result($db, $ids, $test_name, $test_result) {
 
 function log_event($db, $ids, $message) {
     $query = "INSERT INTO event (timestamp, message) VALUES (NOW()), '$message')";
+    error_log($query);
     $result = $db->query($query);
     $event_id = $db->insert_id;
     foreach($ids as $asset_id) {
         $query = "INSERT INTO event_asset_link (fk_event_id, fk_asset_id) VALUES ($event_id, $asset_id)";
+        error_log($query);
         $db->query($query);
     }
 }
