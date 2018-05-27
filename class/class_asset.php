@@ -18,6 +18,7 @@ class Asset {
                 $query = "SELECT * FROM asset " .
                     "INNER JOIN asset_descriptor ON asset_descriptor.id = asset.fk_descriptor" .
                     "WHERE asset.id = $id";
+                error_log($query);
                 if ($result = $db->query($query)) {
                     if ($row = $result->fetch_assoc()) {
                         $this->id = $id;
@@ -26,7 +27,6 @@ class Asset {
                         $this->revision = $row['revision'];
                     }
                 }
-
             }
         }
     }
