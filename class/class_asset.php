@@ -51,7 +51,7 @@ class Asset {
     }
 
     function get_json() {
-        $json = new StdObj;
+        $json = new stdClass;
         $json->id = $this->id;
         $json->serial = $this->serial;
         $json->model = $this->model;
