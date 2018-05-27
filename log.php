@@ -27,7 +27,7 @@ var_dump($json_ob);
             if(preg_match('/^process_(\w+)$/', $action, $matches) ) {
 
             } else if (file_exists(__DIR__ . '/actions/' . strtolower($json_ob->action) . '.php')) {
-                $action($mysqli, $json_ob->ids);
+                $action($mysqli, $ids);
             }
         }
     } else {
