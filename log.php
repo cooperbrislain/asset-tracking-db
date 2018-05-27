@@ -10,6 +10,8 @@
 
     $json_ob = json_decode($_REQUEST['json']);
 
+    error_log($json_ob);
+
     $ids = array();
 
     if(is_array($json_ob->ids)) {

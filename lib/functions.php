@@ -55,7 +55,7 @@ function test_result($db, $ids, $test_name, $test_result) {
         $test_id = $row['id'];
         foreach($ids as $asset_id) {
             $query = "INSERT INTO test_result_link (fk_asset_id, fk_test_id, timestamp, result) " .
-                "VALUES ($asset_id, $test_id, DATE(NOW()), $test_result)";
+                "VALUES ($asset_id, $test_id, NOW(), $test_result)";
             error_log($query);
             $db->query($query);
         }
@@ -63,7 +63,7 @@ function test_result($db, $ids, $test_name, $test_result) {
 }
 
 function log_event($db, $ids, $message) {
-    $query = "INSERT INTO event (timestamp, message) VALUES (DATE(NOW()), '$message')";
+    $query = "INSERT INTO event (timestamp, message) VALUES (NOW()), '$message')";
     $result = $db->query($query);
     $event_id = $db->insert_id;
     foreach($ids as $asset_id) {
