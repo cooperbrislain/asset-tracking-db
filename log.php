@@ -10,7 +10,7 @@
 
     $json_ob = json_decode($_REQUEST['json']);
 
-    error_log($json_ob);
+var_dump($json_ob);
 
     $ids = array();
 
