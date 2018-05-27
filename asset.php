@@ -10,6 +10,6 @@ $serial = $_REQUEST['serial'];
 
 $id = find_or_create($mysqli, $serial);
 
-$asset = new Asset($id);
+$asset = new Asset($mysqli, $id);
 
 echo $asset->get_json();
