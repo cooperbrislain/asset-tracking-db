@@ -25,6 +25,7 @@ class Asset {
                         $this->serial = $row['serial'];
                         $this->status = $row['status'];
                         $this->revision = $row['revision'];
+                        $this->model = $row['model'];
                     }
                 }
             }
