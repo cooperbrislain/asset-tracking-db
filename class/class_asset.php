@@ -35,7 +35,7 @@ class Asset {
         $query = "SELECT DISTINCT id, name FROM test";
         if ($result = $this->db->query($query)) {
             $test_results = array();
-            while ($row = $result->fetch_array($result)) {
+            while ($row = $result->fetch_assoc($result)) {
                 $test_status = get_test_status($this->db, $this->id, $row['id']);
                 $test_results[$row['name']] = $test_status;
             }
