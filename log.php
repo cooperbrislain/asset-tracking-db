@@ -6,11 +6,7 @@
     require_once('lib/functions.php');
     require_once('lib/actions.php');
 
-    error_log($_REQUEST['json']);
-
     $json_ob = json_decode($_REQUEST['json']);
-
-var_dump($json_ob);
 
     $ids = array();
 
@@ -27,8 +23,7 @@ var_dump($json_ob);
             if(preg_match('/^process_(\w+)$/', $action, $matches) ) {
 
             } else if (file_exists(__DIR__ . '/actions/' . strtolower($json_ob->action) . '.php')) {
-                error_log('calling ' . $action . '(' . implode(',',$ids) . ')');
-                $action($mysqli, $ids);
+               $action($mysqli, $ids);
             }
         }
     } else {

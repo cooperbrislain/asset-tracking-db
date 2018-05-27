@@ -49,14 +49,12 @@ function find_or_create($db, $serial) {
 
 function test_result($db, $ids, $test_name, $test_result) {
     $query = "SELECT * FROM test WHERE name = '$test_name'";
-    error_log($query);
     if($result = $db->query($query)) {
         $row = $result->fetch_assoc();
         $test_id = $row['id'];
         foreach($ids as $asset_id) {
             $query = "INSERT INTO test_result_link (fk_asset_id, fk_test_id, timestamp, result) " .
                 "VALUES ($asset_id, $test_id, NOW(), $test_result)";
-            error_log($query);
             $db->query($query);
         }
     }
@@ -64,12 +62,10 @@ function test_result($db, $ids, $test_name, $test_result) {
 
 function log_event($db, $ids, $message) {
     $query = "INSERT INTO event (timestamp, message) VALUES (NOW(), '$message')";
-    error_log($query);
     $result = $db->query($query);
     $event_id = $db->insert_id;
     foreach($ids as $asset_id) {
         $query = "INSERT INTO event_asset_link (fk_event_id, fk_asset_id) VALUES ($event_id, $asset_id)";
-        error_log($query);
         $db->query($query);
     }
 }
@@ -85,9 +81,7 @@ function complete_process($db, $ids, $process_name) {
                     "WHERE fk_process_id = $process_id " .
                     "AND fk_asset_id = $asset_id";
                 if ($result = $db->query($result)) {
-                    error_log('result');
                 } else {
-                    error_log('no result');
                 }
             }
         }
