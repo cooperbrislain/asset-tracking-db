@@ -26,7 +26,7 @@ var_dump($json_ob);
             $action = strtolower(str_replace('.','_',$json_ob->action));
             if(preg_match('/^process_(\w+)$/', $action, $matches) ) {
 
-            } else if (file_exists(__DIR__ . '/actions/' . lower_case($json_ob->action) . '.php')) {
+            } else if (file_exists(__DIR__ . '/actions/' . strtolower($json_ob->action) . '.php')) {
                 $action($mysqli, $json_ob->ids);
             }
         }
