@@ -16,7 +16,7 @@ class Asset {
             $this->db = $db;
             if ($id) {
                 $query = "SELECT * FROM asset " .
-                    "INNER JOIN asset_descriptor ON asset_descriptor.id = asset.fk_descriptor " .
+                    "LEFT JOIN asset_descriptor ON asset_descriptor.id = asset.fk_descriptor " .
                     "WHERE asset.id = $id";
                 error_log($query);
                 if ($result = $db->query($query)) {
