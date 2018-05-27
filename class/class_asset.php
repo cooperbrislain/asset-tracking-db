@@ -13,6 +13,7 @@ class Asset {
     function __construct($db, $id)
     {
         if ($db) {
+            $this->db = $db;
             if ($id) {
                 $query = "SELECT * FROM asset " .
                     "INNER JOIN  WHERE id = $id";
