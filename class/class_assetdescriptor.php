@@ -20,7 +20,6 @@ class AssetDescriptor {
         $query = "SELECT * FROM asset_descriptor WHERE id = $this->id";
         if ($result = $this->db->query($query)) {
             if ($row = $result->fetch_assoc()) {
-                $this->id = $id;
                 $this->code = $row['code'];
                 $this->model = $row['model'];
                 $this->class = $row['class'];
