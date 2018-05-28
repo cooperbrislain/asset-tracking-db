@@ -9,6 +9,7 @@ class Asset {
     public $revision;
     public $model;
     public $status;
+    public $specs;
 
     function __construct($db, $id)
     {
@@ -26,6 +27,7 @@ class Asset {
                         $this->status = $row['status'];
                         $this->revision = $row['revision'];
                         $this->model = $row['model'];
+                        $this->specs = json_decode($row['specs']);
                     }
                 }
             }
