@@ -1,8 +1,7 @@
 <?php
 require_once('.secret/mqtt.php');
 
-function mqtt_notify($db, $asset_ids) {
-    global $mqtt_username, $mqtt_passwod, $mqtt_host, $mqtt_port;
+function mqtt_init($mqtt_client) {
     $mqtt_client = new Mosquitto\Client('asset_tracker');
     $mqtt_client->onConnect(function() use ($mqtt_client) {
         $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
@@ -28,6 +27,10 @@ function mqtt_notify($db, $asset_ids) {
 
     /* Enter the event loop */
     $mqtt_client->loopForever();
+}
+
+function mqtt_notify($mqtt_client, $asset_ids) {
+
 }
 
 function get_test_status($db, $asset_id, $test_id) {
