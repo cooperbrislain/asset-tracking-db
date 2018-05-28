@@ -4,5 +4,5 @@ function checkin($db, $ids) {
     $id = $ids[0];
     $asset = new Asset($db, $id);
     log_event($db, array($id), 'checked in');
-    mqtt_notify($mqtt_client, 'leds/test/checkin', $asset->get_json());
+    mqtt_notify($mqtt_client, 'leds/test/checkin', $asset->spec_id;
 }
