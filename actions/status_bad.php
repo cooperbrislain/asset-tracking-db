@@ -1,5 +1,7 @@
 <?php
-function status_bad($db, $ids) {
-    $query = "UPDATE asset SET status = -1 WHERE id = IN ( " . implode(',',$ids) . " )";
-    log_event($db, $ids, 'marked bad');
+function status_bad($assets) {
+    foreach ($assets as $asset) {
+        $asset->status = -1;
+    }
+    log_event($assets, 'marked bad');
 }

@@ -10,22 +10,22 @@ require_once('lib/actions.php');
 
 $json_ob = json_decode($_REQUEST['json']);
 
-$ids = array();
+$assets = array();
 
 if(is_array($json_ob->ids)) {
     if(!$json_ob->action) {
 
     } else {
         foreach($json_ob->ids as $serial) {
-            if($id = find_or_create($mysqli, $serial)) {
-                $ids[] = $id;
+            if($asset = find_or_create($mysqli, $serial)) {
+                $assets[] = $asset;
             }
         }
         $action = strtolower(str_replace('.','_',$json_ob->action));
         if(preg_match('/^process_(\w+)$/', $action, $matches) ) {
 
         } else if (file_exists(__DIR__ . '/actions/' . strtolower($json_ob->action) . '.php')) {
-           $action($mysqli, $ids);
+           $action($assets);
         }
     }
 } else {

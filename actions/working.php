@@ -1,6 +1,7 @@
 <?php
-function working($db, $ids) {
-    $query = "UPDATE asset SET status = 1 WHERE id = IN ( " . implode(',',$ids) . " )";
-    log_event($db, $ids, 'marked good');
-    $db->query($query);
+function working($assets) {
+    foreach ($asset as $asset) {
+        $asset->status = 1;
+    }
+    log_event($assets, 'marked working');
 }

@@ -8,7 +8,7 @@ require_once('lib/actions.php');
 
 $serial = $_REQUEST['serial'];
 
-$id = find_or_create($mysqli, $serial);
+$id = find_or_create($serial);
 
 $asset = new Asset($mysqli, $id);
 
