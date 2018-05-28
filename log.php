@@ -25,7 +25,7 @@ if(is_array($json_ob->ids)) {
         $action = strtolower(str_replace('.','_',$json_ob->action));
         if(preg_match('/^process_(\w+)$/', $action, $matches) ) {
 
-        } else if (file_exists(__DIR__ . '/actions/' . strtolower($json_ob->action) . '.php')) {
+        } else if (file_exists(__DIR__ . '/actions/' . $action . '.php')) {
            $action($assets);
         }
     }
