@@ -29,10 +29,10 @@ class Asset {
     function save() {
         $query = "UPDATE asset SET " .
             "serial = '$this->serial', " .
-            "revision = '$this->revision', " .
+            "revision = $this->revision, " .
             "model = '$this->model', " .
-            "status = '$this->status', " .
-            "fk_descriptor = '$this->descriptor' " .
+            "status = $this->status, " .
+            "fk_descriptor = $this->descriptor->id " .
             "WHERE id = $this->id";
         $this->db->query($query);
     }
