@@ -22,7 +22,7 @@ error_log($message->topic, "\n", $message->payload, "\n\n");
 
 /* Connect, supplying the host and port. */
 /* If not supplied, they default to localhost and port 1883 */
-$client->setCredentials($mqtt_username, $mqtt_password);
+$mqtt_client->setCredentials($mqtt_username, $mqtt_password);
 $mqtt_client->connect($mqtt_host, $mqtt_port);
 
 /* Enter the event loop */
