@@ -22,7 +22,7 @@ function find_or_create($serial) {
     if ($result = $mysqli->query($query)) {
         if($row = $result->fetch_assoc()) {
             $id = $row['id'];
-            $asset = new Asset($id);
+            $asset = new Asset($mysqli, $id);
             return $asset;
         } else {
             preg_match('/^([A-Za-z0-9]+)/', $serial, $matches);
@@ -37,7 +37,7 @@ function find_or_create($serial) {
             }
             $result = $mysqli->query($query);
             $id = $mysqli->insert_id;
-            $asset = new Asset($id);
+            $asset = new Asset($mysqli, $id);
             return $asset;
         }
     }
