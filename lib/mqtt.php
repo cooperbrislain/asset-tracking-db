@@ -4,14 +4,14 @@ require_once('.secret/mqtt.php');
 
 $mqtt_client = new Mosquitto\Client('asset_tracker');
 $mqtt_client->onConnect(function() use ($mqtt_client) {
-$mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
-$mqtt_client->disconnect();
+    $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
+    $mqtt_client->disconnect();
 });
 
 /* Set the callback fired when the connection is complete */
 $mqtt_client->onConnect(function($code, $message) use ($mqtt_client) {
-/* Subscribe to the broker's $SYS namespace, which shows debugging info */
-$mqtt_client->subscribe('$SYS/#', 0);
+    /* Subscribe to the broker's $SYS namespace, which shows debugging info */
+    $mqtt_client->subscribe('$SYS/#', 0);
 });
 
 /* Set the callback fired when we receive a message */
