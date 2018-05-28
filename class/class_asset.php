@@ -9,7 +9,7 @@ class Asset {
     public $revision;
     public $model;
     public $status;
-    public $specs;
+    public $spec_id;
 
     function __construct($db, $id)
     {
@@ -27,7 +27,7 @@ class Asset {
                         $this->status = $row['status'];
                         $this->revision = $row['revision'];
                         $this->model = $row['model'];
-                        $this->specs = json_decode($row['specs']);
+                        $this->spec_id = json_decode($row['fk_spec_id']);
                     }
                 }
             }
@@ -67,7 +67,7 @@ class Asset {
         $json->revision = $this->revision;
         $json->test_results = $this->get_test_status();
         $json->production_checklist = $this->get_production_checklist();
-        $json->specs = $this->specs;
+        $json->spec = $this->spec_id;
         return json_encode($json);
     }
 }
