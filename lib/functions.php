@@ -1,7 +1,7 @@
 <?php
 
-function mqtt_notify($mqtt_client, $message) {
-    $mqtt_client->publish('leds/test/serial', $message);
+function mqtt_notify($mqtt_client, $topic, $message) {
+    $mqtt_client->publish($topic, $message);
 }
 
 function get_test_status($db, $asset_id, $test_id) {
