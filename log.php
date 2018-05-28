@@ -5,7 +5,7 @@ require_once('.secret/mysqli.php');
 require_once('.secret/mqtt.php');
 require_once('lib/mqtt.php');
 require_once('class/class_asset.php');
-require_once('class/assetdescriptor.php');
+require_once('class/class_assetdescriptor.php');
 require_once('lib/functions.php');
 require_once('lib/actions.php');
 
