@@ -1,5 +1,5 @@
 <?php
-require_once('../.secret/mqtt.php');
+require_once('.secret/mqtt.php');
 
 function mqtt_notify($db, $asset_ids) {
     global $mqtt_username, $mqtt_passwod, $mqtt_host, $mqtt_port;
