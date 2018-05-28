@@ -4,6 +4,11 @@ require_once('.secret/mqtt.php');
 
 $mqtt_client = new Mosquitto\Client('asset_tracker');
 
+function mqtt_notify($topic, $message) {
+    global $mqtt_client;
+    $mqtt_client->publish($topic, $message);
+}
+
 /* Set the callback fired when the connection is complete */
 $mqtt_client->onConnect(function($code, $message) use ($mqtt_client) {
     /* Subscribe to the broker's $SYS namespace, which shows debugging info */

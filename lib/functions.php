@@ -1,9 +1,5 @@
 <?php
 
-function mqtt_notify($mqtt_client, $topic, $message) {
-    $mqtt_client->publish($topic, $message);
-}
-
 function get_test_status($asset, $test_id) {
     global $mysqli;
     $query = "SELECT result FROM test_result_link " .
