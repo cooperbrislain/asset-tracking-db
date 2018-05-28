@@ -58,6 +58,12 @@ function test_result($assets, $test_name, $test_result) {
     }
 }
 
+
+function mqtt_notify($topic, $message) {
+    global $mqtt_client;
+    $mqtt_client->publish($topic, $message);
+}
+
 function log_event($assets, $message) {
     global $mysqli;
     $query = "INSERT INTO event (timestamp, message) VALUES (NOW(), '$message')";
