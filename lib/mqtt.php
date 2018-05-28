@@ -17,7 +17,7 @@ $mqtt_client->subscribe('$SYS/#', 0);
 /* Set the callback fired when we receive a message */
 $mqtt_client->onMessage(function($message) {
 /* Display the message's topic and payload */
-error_log($message->topic, "\n", $message->payload, "\n\n");
+    error_log($message->topic . ': ' . $message->payload);
 });
 
 /* Connect, supplying the host and port. */
