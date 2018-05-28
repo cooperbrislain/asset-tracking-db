@@ -67,6 +67,7 @@ class Asset {
         $json->revision = $this->revision;
         $json->test_results = $this->get_test_status();
         $json->production_checklist = $this->get_production_checklist();
+        $json->specs = $this->specs;
         return json_encode($json);
     }
 }
