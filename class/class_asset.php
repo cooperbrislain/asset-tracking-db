@@ -1,41 +1,51 @@
 <?php
+
+require_once('class/class_assetdescriptor.php');
+
 class Asset {
     private $db;
 
-    private $descriptor_id;
+    public $descriptor;
 
     public $id;
     public $serial;
     public $revision;
     public $model;
     public $status;
-    public $spec_id;
 
     function __construct($db, $id)
     {
         if ($db) {
             $this->db = $db;
-            if ($id) {
-                $query = "SELECT * FROM asset " .
-                    "LEFT JOIN asset_descriptor ON asset_descriptor.id = asset.fk_descriptor " .
-                    "WHERE asset.id = $id";
-                error_log($query);
-                if ($result = $db->query($query)) {
-                    if ($row = $result->fetch_assoc()) {
-                        $this->id = $id;
-                        $this->serial = $row['serial'];
-                        $this->status = $row['status'];
-                        $this->revision = $row['revision'];
-                        $this->model = $row['model'];
-                        $this->spec_id = json_decode($row['fk_spec_id']);
-                    }
-                }
-            }
+            $this->id = $id;
+            $this->load();
         }
     }
 
     function record_test() {
 
+    }
+
+    function save() {
+        $query = "UPDATE asset SET " .
+            "serial = '$this->serial', " .
+            "revision = '$this->revision', " .
+            "model = '$this->model', " .
+            "status = '$this->status', " .
+            "fk_descriptor = '$this->descriptor' " .
+            "WHERE id = $this->id";
+        $this->db->query($query);
+    }
+
+    function load() {
+        $query = "SELECT * FROM asset WHERE id = $this->id";
+        $result = $this->db->query($query);
+        $row = $result->fetch_assoc();
+        $this->serial = $row['serial'];
+        $this->revision = $row['revision'];
+        $this->model = $row['model'];
+        $this->status = $row['status'];
+        $this->descriptor  = new AssetDescriptor($this->db, $row['fk_descriptor']);
     }
 
     function get_test_status() {
@@ -65,9 +75,7 @@ class Asset {
         $json->model = $this->model;
         $json->status = $this->status;
         $json->revision = $this->revision;
-        $json->test_results = $this->get_test_status();
-        $json->production_checklist = $this->get_production_checklist();
-        $json->spec = $this->spec_id;
+        $json->descriptor = $this->descriptor->get_json();
         return json_encode($json);
     }
 }
