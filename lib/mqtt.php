@@ -1,5 +1,7 @@
 <?php
 
+require_once('.secret/mqtt.php');
+
 $mqtt_client = new Mosquitto\Client('asset_tracker');
 $mqtt_client->onConnect(function() use ($mqtt_client) {
 $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
@@ -19,7 +21,7 @@ error_log($message->topic, "\n", $message->payload, "\n\n");
 });
 
 /* Connect, supplying the host and port. */
-/* If not supplied, they default to localhostd and port 1883 */
+/* If not supplied, they default to localhost and port 1883 */
 $client->setCredentials($mqtt_username, $mqtt_password);
 $mqtt_client->connect($mqtt_host, $mqtt_port);
 
