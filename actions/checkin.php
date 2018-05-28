@@ -1,5 +1,6 @@
 <?php
 function checkin($db, $ids) {
+    global $mqtt_client;
     log_event($db, $ids, 'checked in');
-    mqtt_notify($db, 4$ids);
+    mqtt_notify($mqtt_client, 4$ids);
 }

@@ -1,36 +1,8 @@
 <?php
 require_once('.secret/mqtt.php');
 
-function mqtt_init($mqtt_client) {
-    $mqtt_client = new Mosquitto\Client('asset_tracker');
-    $mqtt_client->onConnect(function() use ($mqtt_client) {
-        $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
-        $mqtt_client->disconnect();
-    });
-
-    /* Set the callback fired when the connection is complete */
-    $mqtt_client->onConnect(function($code, $message) use ($mqtt_client) {
-        /* Subscribe to the broker's $SYS namespace, which shows debugging info */
-        $mqtt_client->subscribe('$SYS/#', 0);
-    });
-
-    /* Set the callback fired when we receive a message */
-    $mqtt_client->onMessage(function($message) {
-        /* Display the message's topic and payload */
-        error_log($message->topic, "\n", $message->payload, "\n\n");
-    });
-
-    /* Connect, supplying the host and port. */
-    /* If not supplied, they default to localhostd and port 1883 */
-    $client->setCredentials($mqtt_username, $mqtt_password);
-    $mqtt_client->connect($mqtt_host, $mqtt_port);
-
-    /* Enter the event loop */
-    $mqtt_client->loopForever();
-}
-
 function mqtt_notify($mqtt_client, $asset_ids) {
-
+    $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
 }
 
 function get_test_status($db, $asset_id, $test_id) {

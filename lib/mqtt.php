@@ -3,10 +3,6 @@
 require_once('.secret/mqtt.php');
 
 $mqtt_client = new Mosquitto\Client('asset_tracker');
-$mqtt_client->onConnect(function() use ($mqtt_client) {
-    $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
-    $mqtt_client->disconnect();
-});
 
 /* Set the callback fired when the connection is complete */
 $mqtt_client->onConnect(function($code, $message) use ($mqtt_client) {
