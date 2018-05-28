@@ -27,7 +27,16 @@ function find_or_create($db, $serial) {
             $id = $row['id'];
             return $id;
         } else {
-            $query = "INSERT INTO asset (serial) VALUES ('$serial')";
+            preg_match('/^([A-Za-z0-9]+)/', $serial, $matches);
+            $model_string = $matches[1];
+            $query = "SELECT * FROM asset_descriptor WHERE model = '$model_string'";
+            $result = $db->query($query);
+            if($row = $result->fetch_assoc()) {
+                $descriptor_id = $row['id'];
+                $query = "INSERT INTO asset (serial, fk_descriptor) VALUES ('$serial', $descriptor_id)";
+            } else {
+                $query = "INSERT INTO asset (serial) VALUES ('$serial')";
+            }
             $result = $db->query($query);
             $id = $db->insert_id;
             return $id;
