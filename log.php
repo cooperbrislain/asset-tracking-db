@@ -18,7 +18,7 @@ if(is_array($json_ob->ids)) {
 
     } else {
         foreach($json_ob->ids as $serial) {
-            if($asset = find_or_create($mysqli, $serial)) {
+            if($asset = find_or_create($serial)) {
                 $assets[] = $asset;
             }
         }
