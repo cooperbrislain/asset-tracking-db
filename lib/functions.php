@@ -1,7 +1,7 @@
 <?php
 
 function mqtt_notify($mqtt_client, $asset_ids) {
-    $mqtt_client->publish('leds/test/serial', implode(',',asset_ids));
+    $mqtt_client->publish('leds/test/serial', implode(',',$asset_ids));
 }
 
 function get_test_status($db, $asset_id, $test_id) {
