@@ -75,7 +75,7 @@ class Asset {
         $json->model = $this->model;
         $json->status = $this->status;
         $json->revision = $this->revision;
-        $json->descriptor = $this->descriptor->get_json();
+        $json->descriptor = json_decode($this->descriptor->get_json());
         return json_encode($json);
     }
 }
