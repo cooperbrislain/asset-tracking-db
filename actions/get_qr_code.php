@@ -1,6 +1,6 @@
 <?php
 
-    include('../lib/full/qrlib.php');
+    include('../qrcode/qrlib.php');
 
     function get_qr_code($assets) {
         foreach ($assets as $asset) {
