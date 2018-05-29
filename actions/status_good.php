@@ -4,5 +4,6 @@ function status_good($assets) {
         $asset->status = 1;
         $asset->save();
     }
+    mqtt_notify('leds/asset/status', 1);
     log_event($assets, 'marked good');
 }
